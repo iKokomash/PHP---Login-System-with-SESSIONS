@@ -47,8 +47,7 @@ if (!empty($_GET["error"])) {
   $msgStyle = "msgBox-error";
 }
 
-function getFormValue($item)
-{
+function getFormValue($item) {
   if (empty($_SESSION["regForm"]))
     return NULL;
   return !empty($_SESSION["regForm"][$item]) ? $_SESSION["regForm"][$item] : NULL;
@@ -72,7 +71,9 @@ function getFormValue($item)
     method="post">
     <h1 class="text-4xl font-bold text-center">Create an Account</h1>
     <span class="<?php echo $msgStyle;
-                  echo (empty($msgContent)) ? "hidden" : NULL ?>"><?php echo $msgContent ?></span>
+    echo (empty($msgContent)) ? "hidden" : NULL ?>">
+      <?php echo $msgContent ?>
+    </span>
     <div class="flex flex-col gap-2">
       <div class="formInput">
         <input type="text" name="username" id="username" value="<?php echo getFormValue("username") ?>" required>
@@ -111,8 +112,8 @@ function getFormValue($item)
               </label>
             </div>
             <div class="w-full h-full">
-              <input class="hidden peer" type="radio" name="gender" id="gender-female" value="f"
-                <?php echo ($gender === 'f') ? "checked" : NULL ?>>
+              <input class="hidden peer" type="radio" name="gender" id="gender-female" value="f" <?php echo
+                ($gender==='f') ? "checked" : NULL ?>>
               <label for="gender-female"
                 class="flex items-center justify-center w-full h-full bg-gray-200 border-2 border-l-0 border-gray-400 rounded-r-md peer-checked:bg-green-500 peer-checked:border-green-500 peer-checked:text-white">
                 <span>Female</span>

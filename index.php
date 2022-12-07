@@ -6,8 +6,7 @@ if (empty($_SESSION["user"])) {
   exit();
 }
 
-function getUserData($item)
-{
+function getUserData($item) {
   if (empty($_SESSION["user"]))
     return NULL;
   return !empty($_SESSION["user"][$item]) ? $_SESSION["user"][$item] : NULL;
@@ -28,8 +27,9 @@ function getUserData($item)
 
 <body class="flex items-center justify-center w-full h-screen bg-gradient-0">
   <div class="flex flex-col items-center justify-center gap-4 p-3 bg-white rounded-md shadow-md w-96">
-    <h1 class="text-4xl font-semibold text-center">Welcome, <br><span
-        class="font-bold"><?php echo getUserData("firstName") . " " . getUserData("lastName") ?></span>!
+    <h1 class="text-4xl font-semibold text-center">Welcome, <br><span class="font-bold">
+        <?php echo getUserData("firstName") . " " . getUserData("lastName") ?>
+      </span>!
     </h1>
     <a class="px-3 py-2 text-xl text-white rounded-md shadow-md button-primary" href="./logout.php">Sign Out</a>
   </div>

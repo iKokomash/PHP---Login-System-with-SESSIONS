@@ -30,8 +30,7 @@ if (!empty($_GET["error"])) {
   $msgStyle = "msgBox-error";
 }
 
-function getFormValue($item)
-{
+function getFormValue($item) {
   if (empty($_SESSION["loginForm"]))
     return NULL;
   return !empty($_SESSION["loginForm"][$item]) ? $_SESSION["loginForm"][$item] : NULL;
@@ -55,7 +54,9 @@ function getFormValue($item)
     method="post">
     <h1 class="w-full text-4xl font-bold text-center">Login</h1>
     <span class="<?php echo $msgStyle;
-                  echo (empty($msgContent)) ? "hidden" : NULL ?>"><?php echo $msgContent ?></span>
+    echo (empty($msgContent)) ? "hidden" : NULL ?>">
+      <?php echo $msgContent ?>
+    </span>
     <div class="flex flex-col gap-2">
       <div class="formInput">
         <input type="text" name="username" id="username" value="<?php echo getFormValue("username") ?>" required>
