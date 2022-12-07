@@ -21,8 +21,7 @@ try {
   echo $e;
 }
 
-function login(mysqli $conn)
-{
+function login(mysqli $conn) {
   if (empty($_POST["username"]) || empty($_POST["password"])) {
     header("Location: ./login.php?error=1");
     exit();
@@ -60,8 +59,7 @@ function login(mysqli $conn)
   header("Location: ./");
 }
 
-function register(mysqli $conn)
-{
+function register(mysqli $conn) {
   if (
     empty($_POST["username"]) || empty($_POST["fname"]) ||
     empty($_POST["lname"]) || empty($_POST["dob"]) || empty($_POST["gender"]) ||
@@ -116,7 +114,6 @@ function register(mysqli $conn)
   }
 
   if (userExist($conn, $username)) {
-    exit();
     header("Location: ./register.php?error=7");
     exit();
   }
@@ -127,7 +124,8 @@ function register(mysqli $conn)
   }
 
   $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-  $stmt = $conn->prepare("INSERT INTO `users` (`username`, `first_name`, `last_name`, `dob`, `gender`, `email`, `password`) VALUES (?, ?, ?, ?, ?, ?, ?);");
+  $stmt = $conn->prepare("INSERT INTO `users` (`username`, `first_name`, `last_name`, `dob`, `gender`, `email`, `password`) 
+          VALUES (?, ?, ?, ?, ?, ?, ?);");
   $stmt->bind_param("sssssss", $username, $firstName, $lastName, $dob, $gender, $email, $hashedPassword);
   $result = $stmt->execute();
 
@@ -139,14 +137,12 @@ function register(mysqli $conn)
   }
 }
 
-function usernameValid(string $username)
-{
+function usernameValid(string $username) {
   $pattern = "/^([A-Za-z0-9_]){3,15}$/";
   return preg_match($pattern, $username);
 }
 
-function userExist(mysqli $conn, string $key)
-{
+function userExist(mysqli $conn, string $key) {
   $stmt = $conn->prepare("SELECT * FROM `users` WHERE `username`=? OR `email`=?;");
   $stmt->bind_param("ss", $key, $key);
   $stmt->execute();
